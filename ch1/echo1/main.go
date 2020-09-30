@@ -6,8 +6,6 @@ import (
 )
 
 func main() {
-	i := 1
-	var j = i++
 	s, sep := "", ""
 	for _, arg := range os.Args[1:] {
 		s += sep + arg
