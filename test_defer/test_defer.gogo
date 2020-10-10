@@ -1,9 +1,9 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"io/ioutil"
+	"ioutil"
 	"os"
 	"strings"
 )
@@ -48,22 +48,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func testLocal() *int {
-	i := 1
-	fmt.Println(&i)
-	return &i
-}
-
 func main() {
-	var n = flag.Bool("n", false, "omit trailing newline")
-	var sep = flag.String("s", " ", "sepatator")
-
-	flag.Parse()
-	fmt.Print(strings.Join(flag.Args(), *sep))
-	if !*n {
-		fmt.Println()
-	}
-
 	m := make(map[*ListNode]int)
 
 	listNodeArr := [3]ListNode{{1, nil}, {2, nil}, {3, nil}}
@@ -87,15 +72,12 @@ func main() {
 		fmt.Println(i, v)
 	}
 
-	if len(os.Args) > 1 {
-		data, err := ioutil.ReadFile(os.Args[1])
-		if err == nil {
-			for _, line := range strings.Split(string(data), "\n") {
-				fmt.Println(line)
-			}
+	data, err := ioutil.ReadFile(os.Args[1])
+	if err == nil {
+		for _, line := range strings.Split(string(data), "\n") {
+			fmt.Println(line)
 		}
+
 	}
 
-	testLocal()
-	fmt.Println(testLocal())
 }
